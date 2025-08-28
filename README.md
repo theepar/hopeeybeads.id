@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Hopeeybeads
+
+> Handmade Beaded Jewelry from Bali – Unique, Colorful, and Custom for You
+
+This is the source code for the Hopeeybeads website, built with Next.js 15 (App Router), Framer Motion, and Tailwind CSS. It features:
+
+- Local product data (no external CMS)
+- Animated hero section and decorative stickers (Sun & Star)
+- Random featured products from all categories
+- Smooth page transitions and global/page loaders
+- Animated contact and footer sections
+- Responsive design for mobile and desktop
+- Custom product detail routing
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/` – Main pages and layout
+- `components/` – UI and feature components
+- `hooks/` – Custom React hooks
+- `lib/` – Utility functions and local product data
+- `public/` – Images and static assets
+- `styles/` – Global CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Animated hero section with parallax and stickers
+- Random featured products
+- Product detail pages with clean URLs
+- Animated contact cards and footer
+- Smooth scroll and page transitions
+- Mobile and desktop interaction effects
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploy easily on [Vercel](https://vercel.com/) or your preferred platform.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Credits
+
+- Built with [Next.js](https://nextjs.org/), [Framer Motion](https://www.framer.com/motion/), [Tailwind CSS](https://tailwindcss.com/)
+- Icons by [Lucide](https://lucide.dev/)
+
+---
+
+For questions or custom orders, contact us via WhatsApp, Shopee, or Instagram!
