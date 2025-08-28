@@ -14,7 +14,7 @@ import { Star, MessageCircle, ChevronLeft, ChevronRight, Sparkles } from 'lucide
 // --- Komponen Kartu Produk (untuk Produk Terkait) ---
 // Diasumsikan Anda memiliki komponen ini dari halaman utama
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
-    <Link href={`/product/${product.slug}`} className="block group">
+    <Link href={`/products/${product.slug}`} className="block group">
         <motion.div
             className="bg-white rounded-2xl shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl"
             whileHover={{ y: -8 }}

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ShoppingBag, MessageCircle, MapPin, ArrowRight, Sun, Star, Sparkles, Ruler, Truck, Instagram } from 'lucide-react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { ShoppingBag, MessageCircle, MapPin, ArrowRight, Sun, Star, Sparkles, Ruler, Truck, Instagram, ChevronDown, HelpCircle } from 'lucide-react';
 import { Info } from 'lucide-react';
 import Image from 'next/image';
 
@@ -36,8 +36,8 @@ export default function HomePage() {
         <AboutSection />
         <FeaturedProductsSection />
         <InfoSection />
+        <FAQSection />
         <ContactSection />
-        <DecorativeStickers isMobile={isMobile} />
       </motion.main>
     </div>
   );
@@ -132,10 +132,10 @@ const AboutSection = () => {
               Untaian Harapan Dalam Setiap Manik
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              Hopeeybeads.id adalah untaian harapan yang terjalin dalam setiap butir manik-manik. Ini bukan sekadar nama toko, melainkan sebuah janji untuk menciptakan keindahan dari setiap keinginan, dan mengubahnya menjadi karya yang bisa dikenakan.
+              Hopeeybeads.id lahir dari impian sederhana: setiap manik-manik yang kami rangkai punya cerita dan harapan tersendiri. Bukan cuma sekadar toko, kami ingin setiap karya yang kamu pakai terasa spesial dan penuh makna.
             </p>
             <p className="text-gray-600 leading-relaxed mt-4">
-              Di balik nama ini, tersembunyi makna bahwa setiap manik-manik yang dirangkai membawa cerita, impian, dan secercah cahaya harapan.
+              Di setiap nama dan desain, ada kisah, impian, dan secercah harapan yang kami titipkan. Semoga setiap butir manik-manik bisa jadi teman perjalananmu, membawa warna dan semangat baru setiap hari.
             </p>
           </motion.div>
         </div>
@@ -179,6 +179,122 @@ const FeaturedProductsSection = () => {
           Setiap kreasi adalah harapan yang hidup. Find the one that speaks to you!
         </motion.p>
         <ProductGallery products={featured} />
+      </div>
+    </section>
+  );
+};
+
+// --- Data FAQ ---
+const faqs = [
+  {
+    q: "Bagaimana cara memesan produk di Hopeeybeads?",
+    a: "Kamu bisa langsung chat WhatsApp kami, pilih produk yang diinginkan, dan diskusikan detailnya. Kami akan pandu prosesnya sampai selesai!"
+  },
+  {
+    q: "Apakah bisa custom ukuran atau desain?",
+    a: "Tentu saja! Sebagian besar produk bisa di-custom sesuai keinginanmu. Silakan konsultasi dulu lewat WhatsApp."
+  },
+  {
+    q: "Pengiriman ke luar Bali bisa?",
+    a: "Bisa banget! Kami kirim ke seluruh Indonesia. Untuk area Bali bisa COD, luar Bali pakai jasa pengiriman."
+  },
+  {
+    q: "Berapa lama proses pembuatan dan pengiriman?",
+    a: "Proses pembuatan biasanya 1-3 hari, pengiriman tergantung lokasi. Kami akan update progress pesananmu secara berkala."
+  },
+  {
+    q: "Metode pembayaran apa saja yang tersedia?",
+    a: "Pembayaran bisa via transfer bank, e-wallet, atau COD untuk area Tabanan Bali. Detail akan kami infokan saat order."
+  }
+];
+
+// --- Komponen untuk satu item FAQ (Accordion) ---
+const FAQItem = ({ faq, isOpen, onClick }: { faq: { q: string, a: string }, isOpen: boolean, onClick: () => void }) => {
+  return (
+    <div className="border-b border-yellow-100 last:border-b-0">
+      <button
+        onClick={onClick}
+        className="w-full flex justify-between items-center text-left py-5 px-6 cursor-pointer hover:bg-yellow-50/50 transition-colors duration-300"
+      >
+        <h3 className="font-semibold text-lg text-yellow-800">{faq.q}</h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-6 h-6 text-yellow-500 flex-shrink-0" />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <p className="px-6 pb-6 text-gray-700 leading-relaxed">
+              {faq.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// --- Komponen Utama Seksi FAQ ---
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        {/* [PERUBAHAN] Menggunakan grid untuk layout desktop/tablet */}
+        <div className="grid lg:grid-cols-3 lg:gap-12 items-start">
+
+          {/* Kolom Kiri: Daftar FAQ */}
+          <motion.div
+            className="lg:col-span-2 bg-white rounded-2xl shadow-lg shadow-yellow-100 overflow-hidden border border-yellow-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+          >
+            {faqs.map((faq, idx) => (
+              <FAQItem
+                key={idx}
+                faq={faq}
+                isOpen={openIndex === idx}
+                onClick={() => handleToggle(idx)}
+              />
+            ))}
+          </motion.div>
+
+          {/* Kolom Kanan: Judul */}
+          <motion.div
+            className="lg:col-span-1 text-center lg:text-left mt-10 lg:mt-0 lg:sticky lg:top-24"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="flex items-center gap-3 justify-center lg:justify-start">
+              <HelpCircle className="text-yellow-500" />
+              <span className="font-poppins font-semibold text-yellow-600">BANTUAN</span>
+            </div>
+            <h2 className="font-quicksand text-4xl font-bold text-yellow-900 mt-4">
+              Ada yang Bisa Kami Bantu?
+            </h2>
+            <p className="text-gray-600 mt-4 leading-relaxed">
+              Tidak menemukan jawabanmu? Jangan ragu untuk menghubungi kami langsung di WhatsApp!
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -320,80 +436,5 @@ const ContactSection = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-// --- 6. Komponen Sticker Dekoratif ---
-const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
-  // Random sticker count between 3 and 8
-  const [stickers, setStickers] = useState(() => {
-    const count = Math.floor(Math.random() * 6) + 3;
-    const icons = [Sun, Star, Sparkles];
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      icon: icons[Math.floor(Math.random() * icons.length)],
-      x: Math.random() * 80 + 10,
-      y: Math.random() * 80 + 10,
-      dx: (Math.random() - 0.5) * 2,
-      dy: (Math.random() - 0.5) * 2,
-      size: Math.random() > 0.5 ? 48 : 64,
-      color: ["text-yellow-300", "text-pink-300", "text-blue-300"][Math.floor(Math.random() * 3)]
-    }));
-  });
-
-  useEffect(() => {
-    if (isMobile) return;
-    const interval = setInterval(() => {
-      setStickers(prev => prev.map(sticker => {
-        // Move randomly, ignore mouse
-        let newX = sticker.x + sticker.dx * (Math.random() * 2 + 1);
-        let newY = sticker.y + sticker.dy * (Math.random() * 2 + 1);
-        // Bounce off edges
-        let dx = sticker.dx, dy = sticker.dy;
-        if (newX < 5 || newX > 95) dx = -dx * (Math.random() * 0.8 + 0.6);
-        if (newY < 5 || newY > 95) dy = -dy * (Math.random() * 0.8 + 0.6);
-        // Occasionally randomize direction for more chaos
-        if (Math.random() < 0.1) {
-          dx = (Math.random() - 0.5) * 2;
-          dy = (Math.random() - 0.5) * 2;
-        }
-        return {
-          ...sticker,
-          x: Math.max(5, Math.min(95, newX)),
-          y: Math.max(5, Math.min(95, newY)),
-          dx,
-          dy
-        };
-      }));
-    }, 900 + Math.random() * 600);
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
-  if (isMobile) return null;
-
-  return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      {stickers.map(sticker => {
-        const Icon = sticker.icon;
-        return (
-          <motion.div
-            key={sticker.id}
-            className="absolute"
-            style={{
-              top: `${sticker.y}%`,
-              left: `${sticker.x}%`,
-              zIndex: 0,
-            }}
-            animate={{
-              top: `${sticker.y}%`,
-              left: `${sticker.x}%`,
-            }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
-          >
-            <Icon className={`w-${sticker.size / 4} h-${sticker.size / 4} opacity-50 ${sticker.color}`} />
-          </motion.div>
-        );
-      })}
-    </div>
   );
 };

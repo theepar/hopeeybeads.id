@@ -47,11 +47,11 @@ export default function Footer() {
                         className="md:col-span-2 lg:col-span-1"
                     >
                         <a href="/" className="flex items-center gap-2 mb-4">
-                            <img src="/logo-nbg.png" alt="Hopeeybeads Logo" className="h-10 w-10 object-contain rounded-full" />
+                            <img src="/logo-nbg.png" alt="Logo Hopeeybeads" className="h-10 w-10 object-contain rounded-full" />
                             <span className="font-extrabold text-2xl text-yellow-900 tracking-tighter">Hopeeybeads</span>
                         </a>
                         <p className="text-gray-600 max-w-xs">
-                            Handmade beads from Bali, crafted with love to highlight your unique style. Buatan lokal, vibes global!
+                            Manik-manik handmade dari Bali, dibuat dengan cinta untuk menonjolkan gaya unikmu. Buatan lokal, vibes mendunia!
                         </p>
                     </motion.div>
                     {/* Kolom 2: Jelajahi */}
@@ -61,12 +61,12 @@ export default function Footer() {
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
                     >
-                        <h3 className="font-bold text-lg text-gray-900 mb-4">Explore</h3>
+                        <h3 className="font-bold text-lg text-gray-900 mb-4">Jelajahi</h3>
                         <ul className="space-y-3">
-                            <li><a href="/" className="hover:text-yellow-600 transition-colors">Home</a></li>
-                            <li><a href="/products" className="hover:text-yellow-600 transition-colors">All Products</a></li>
-                            <li><a href="/about" className="hover:text-yellow-600 transition-colors">About Us</a></li>
-                            <li><a href="/#contact" className="hover:text-yellow-600 transition-colors">Contact</a></li>
+                            <li><a href="/" className="hover:text-yellow-600 transition-colors">Beranda</a></li>
+                            <li><a href="/products" className="hover:text-yellow-600 transition-colors">Semua Produk</a></li>
+                            <li><a href="/about" className="hover:text-yellow-600 transition-colors">Tentang Kami</a></li>
+                            <li><a href="/#contact" className="hover:text-yellow-600 transition-colors">Kontak</a></li>
                         </ul>
                     </motion.div>
                     {/* Kolom 3: Bantuan */}
@@ -76,11 +76,11 @@ export default function Footer() {
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
                     >
-                        <h3 className="font-bold text-lg text-gray-900 mb-4">Need Help?</h3>
+                        <h3 className="font-bold text-lg text-gray-900 mb-4">Bantuan</h3>
                         <ul className="space-y-3">
-                            <li><a href="/how-to-order" className="hover:text-yellow-600 transition-colors">How to Order</a></li>
-                            <li><a href="/shipping-returns" className="hover:text-yellow-600 transition-colors">Shipping & Returns</a></li>
-                            <li><a href="/faq" className="hover:text-yellow-600 transition-colors">FAQ</a></li>
+                            <li><a href="/#contact" className="hover:text-yellow-600 transition-colors">Cara Pesan</a></li>
+                            <li><a href="/#info" className="hover:text-yellow-600 transition-colors">Pengiriman & Retur</a></li>
+                            <li><a href="/#faq" className="hover:text-yellow-600 transition-colors">FAQ</a></li>
                         </ul>
                     </motion.div>
                     {/* Kolom 4: Temukan Kami */}
@@ -90,8 +90,8 @@ export default function Footer() {
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
                     >
-                        <h3 className="font-bold text-lg text-gray-900 mb-4">Find Us</h3>
-                        <p className="mb-4 text-gray-600">Connect with us on social media. Let's vibe together!</p>
+                        <h3 className="font-bold text-lg text-gray-900 mb-4">Temukan Kami</h3>
+                        <p className="mb-4 text-gray-600">Terhubung dengan kami di media sosial. Yuk, vibes bareng!</p>
                         <div className="flex items-center gap-4">
                             <a href="https://www.instagram.com/hopeeybeads.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-pink-600 transition-colors">
                                 <FaInstagram size={24} />
@@ -111,11 +111,10 @@ export default function Footer() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
-                    // Perubahan ada di baris className ini
                     className="mt-12 pt-8 border-t border-stone-200 flex justify-center items-center"
                 >
                     <p className="text-sm text-gray-500">
-                        &copy; {new Date().getFullYear()} Hopeeybeads. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Hopeeybeads. Semua Hak Cipta Dilindungi.
                     </p>
                 </motion.div>
             </div>
