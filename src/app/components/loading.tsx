@@ -15,7 +15,7 @@ const PageLoader = () => (
             transition={{ delay: 0.3, duration: 0.5 }}
             className="flex flex-col items-center gap-4"
         >
-            <span className="text-yellow-800 w-16 h-16 animate-pulse text-6xl" >✨</span>
+            <img src="/logo-nbg.png" alt="Hopeeybeads Logo" className="w-16 h-16 animate-pulse rounded-full bg-yellow-200 shadow-lg" />
             <p className="font-quicksand font-bold text-2xl text-yellow-900" > Hopeeybeads </p>
         </motion.div>
     </motion.div>

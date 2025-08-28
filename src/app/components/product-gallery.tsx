@@ -1,5 +1,3 @@
-// src/app/components/product-gallery.tsx
-
 'use client';
 
 import { Product } from '../types/product'; // Pastikan path ini benar
@@ -48,9 +46,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     <Image
                         src={product.image}
                         alt={product.name}
-                        width={400} // Tambahkan width dan height
+                        width={400}
                         height={400}
-                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-400 ease-in-out"
+                        className="w-full h-40 md:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-400 ease-in-out"
                     />
                 </div>
                 <div className="p-4 flex flex-col gap-2">
@@ -77,12 +75,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 export default function ProductGallery({ products }: { products: Product[] }) {
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
+        visible: { opacity: 1 },
     };
 
     const itemVariants = {
@@ -92,13 +85,17 @@ export default function ProductGallery({ products }: { products: Product[] }) {
 
     return (
         <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"
+            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
         >
-            {products.map((product) => (
-                <motion.div key={product.id} variants={itemVariants}>
+            {products.map((product, idx) => (
+                <motion.div
+                    key={product.id}
+                    variants={itemVariants}
+                    transition={{ duration: 0.6, delay: (idx + 1) * 0.3, ease: 'easeOut' }}
+                >
                     <ProductCard product={product} />
                 </motion.div>
             ))}

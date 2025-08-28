@@ -9,22 +9,22 @@ export const products: Product[] = [
         slug: 'strap1',
         name: 'Strap 1',
         category: 'Phone Strap',
-        price: 35000,
+        price: 5000,
         rating: 5,
         image: '/strap/strap1.png',
         images: ['/strap/strap1.png'],
-        description: 'Strap 1 - handmade colorful beads.'
+        description: 'Tali handphone dengan beads warna-warni, cocok untuk semua tipe ponsel. Handmade, kuat, dan stylish untuk aktivitas harian.'
     },
     {
         id: 2,
         slug: 'strap2',
         name: 'Strap 2',
         category: 'Phone Strap',
-        price: 35000,
+        price: 5000,
         rating: 5,
         image: '/strap/strap2.png',
         images: ['/strap/strap2.png'],
-        description: 'Strap 2 - handmade colorful beads.'
+        description: 'Tali handphone dengan kombinasi beads unik, memberikan sentuhan personal dan aman untuk ponsel Anda.'
     },
     // GELANG
     {
@@ -32,7 +32,7 @@ export const products: Product[] = [
         slug: 'kerang',
         name: 'Gelang Kerang',
         category: 'Gelang',
-        price: 42000,
+        price: 5000,
         rating: 5,
         image: '/gelang/kerang/20241014_151148.jpg',
         images: [
@@ -41,14 +41,14 @@ export const products: Product[] = [
             '/gelang/kerang/20241014_151335.jpg',
             '/gelang/kerang/20241014_151500.jpg'
         ],
-        description: 'Gelang kerang - motif kerang laut.'
+        description: 'Gelang handmade dengan hiasan kerang laut asli, cocok untuk gaya pantai dan kasual, memberikan nuansa tropis.'
     },
     {
         id: 4,
         slug: 'kupu',
         name: 'Gelang Kupu',
         category: 'Gelang',
-        price: 42000,
+        price: 5000,
         rating: 5,
         image: '/gelang/kupu/20250524_154406.jpg',
         images: [
@@ -57,14 +57,14 @@ export const products: Product[] = [
             '/gelang/kupu/20250524_154544.jpg',
             '/gelang/kupu/20250524_154738.jpg'
         ],
-        description: 'Gelang kupu - motif kupu-kupu.'
+        description: 'Gelang dengan motif kupu-kupu, terbuat dari beads berkualitas, cocok untuk anak-anak dan remaja yang suka warna ceria.'
     },
     {
         id: 5,
         slug: 'mutiara',
         name: 'Gelang Mutiara',
         category: 'Gelang',
-        price: 42000,
+        price: 5000,
         rating: 5,
         image: '/gelang/mutiara/20240918_150854.jpg',
         images: [
@@ -75,14 +75,14 @@ export const products: Product[] = [
             '/gelang/mutiara/20250524_155001.jpg',
             '/gelang/mutiara/20250524_155023.jpg'
         ],
-        description: 'Gelang mutiara - motif mutiara.'
+        description: 'Gelang elegan dengan beads mutiara sintetis, cocok untuk acara formal maupun santai, menambah kesan mewah.'
     },
     {
         id: 6,
         slug: 'pita',
         name: 'Gelang Pita',
         category: 'Gelang',
-        price: 42000,
+        price: 5000,
         rating: 5,
         image: '/gelang/pita/20241014_150653.jpg',
         images: [
@@ -90,7 +90,7 @@ export const products: Product[] = [
             '/gelang/pita/20241014_150846.jpg',
             '/gelang/pita/20241014_150847.jpg'
         ],
-        description: 'Gelang pita - motif pita.'
+        description: 'Gelang dengan aksen pita lucu, cocok untuk hadiah atau dipakai sehari-hari, desain feminin dan playful.'
     },
     // JEPIT (all variants)
     {
@@ -98,7 +98,7 @@ export const products: Product[] = [
         slug: 'bunga-1',
         name: 'Jepit Bunga 1',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/bunga-1/20250821_093249.jpg',
         images: [
@@ -107,14 +107,14 @@ export const products: Product[] = [
             '/jepit/bunga-1/20250821_093324.jpg',
             '/jepit/bunga-1/20250821_093338.jpg'
         ],
-        description: 'Jepit bunga 1 - motif bunga.'
+        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
     },
     {
         id: 8,
         slug: 'bunga-2',
         name: 'Jepit Bunga 2',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/bunga-2/20250821_092910.jpg',
         images: [
@@ -122,14 +122,14 @@ export const products: Product[] = [
             '/jepit/bunga-2/20250821_093217.jpg',
             '/jepit/bunga-2/20250821_093221.jpg'
         ],
-        description: 'Jepit bunga 2 - motif bunga.'
+        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
     },
     {
         id: 9,
         slug: 'bunga-3',
         name: 'Jepit Bunga 3',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/bunga-3/20250821_092617.jpg',
         images: [
@@ -140,14 +140,14 @@ export const products: Product[] = [
             '/jepit/bunga-3/20250821_092744.jpg',
             '/jepit/bunga-3/20250821_092748.jpg'
         ],
-        description: 'Jepit bunga 3 - motif bunga.'
+        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
     },
     {
         id: 10,
         slug: 'bunga-4',
         name: 'Jepit Bunga 4',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/bunga-4/20250821_092258.jpg',
         images: [
@@ -156,14 +156,14 @@ export const products: Product[] = [
             '/jepit/bunga-4/20250821_092315.jpg',
             '/jepit/bunga-4/20250821_092429.jpg'
         ],
-        description: 'Jepit bunga 4 - motif bunga.'
+        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
     },
     {
         id: 11,
         slug: 'bunga-5',
         name: 'Jepit Bunga 5',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/bunga-5/20250821_091915.jpg',
         images: [
@@ -174,14 +174,14 @@ export const products: Product[] = [
             '/jepit/bunga-5/20250821_092145.jpg',
             '/jepit/bunga-5/20250821_092204.jpg'
         ],
-        description: 'Jepit bunga 5 - motif bunga.'
+        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
     },
     {
         id: 12,
         slug: 'hijau-kupu',
         name: 'Jepit Hijau Kupu',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/hijau-kupu/20250821_093430.jpg',
         images: [
@@ -189,49 +189,49 @@ export const products: Product[] = [
             '/jepit/hijau-kupu/20250821_093436.jpg',
             '/jepit/hijau-kupu/20250821_093437.jpg'
         ],
-        description: 'Jepit hijau kupu - motif kupu-kupu hijau.'
+        description: 'Jepit rambut dengan motif kupu-kupu hijau, memberikan kesan segar dan natural pada penampilan.'
     },
     {
         id: 13,
         slug: 'orange-kupu',
         name: 'Jepit Orange Kupu',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/orange-kupu/20250821_093528.jpg',
         images: [
             '/jepit/orange-kupu/20250821_093528.jpg',
             '/jepit/orange-kupu/20250821_093533.jpg'
         ],
-        description: 'Jepit orange kupu - motif kupu-kupu orange.'
+        description: 'Jepit rambut kupu-kupu warna orange, cocok untuk tampilan ceria dan energik.'
     },
     {
         id: 14,
         slug: 'pink-kupu',
         name: 'Jepit Pink Kupu',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/pink-kupu/20250821_093452.jpg',
         images: [
             '/jepit/pink-kupu/20250821_093452.jpg',
             '/jepit/pink-kupu/20250821_093513.jpg'
         ],
-        description: 'Jepit pink kupu - motif kupu-kupu pink.'
+        description: 'Jepit rambut kupu-kupu pink, feminin dan manis, cocok untuk berbagai gaya rambut.'
     },
     {
         id: 15,
         slug: 'putih-kupu',
         name: 'Jepit Putih Kupu',
         category: 'Jepit',
-        price: 25000,
+        price: 5000,
         rating: 4,
         image: '/jepit/putih-kupu/20250821_093602.jpg',
         images: [
             '/jepit/putih-kupu/20250821_093602.jpg',
             '/jepit/putih-kupu/20250821_093611.jpg'
         ],
-        description: 'Jepit putih kupu - motif kupu-kupu putih.'
+        description: 'Jepit rambut kupu-kupu putih, elegan dan netral, mudah dipadukan dengan outfit apapun.'
     },
 ];
 

@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ShoppingBag, Phone, MessageCircle, MapPin, ArrowRight, Sun, Star, Sparkles } from 'lucide-react';
+import React, { useRef, useState, useEffect, cloneElement } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ShoppingBag, MessageCircle, MapPin, ArrowRight, Sun, Star, Sparkles, Ruler, Truck, Instagram } from 'lucide-react';
+import Image from 'next/image';
+
+// Asumsi impor dari file lokal Anda
 import ProductGallery from './components/product-gallery';
 import { getProducts } from './libs/data';
 import { Product } from '@/app/types/product';
@@ -10,23 +13,19 @@ import { Product } from '@/app/types/product';
 // --- Hook untuk Deteksi Perangkat ---
 const useDeviceDetection = () => {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const userAgent = typeof window.navigator === "undefined" ? "" : navigator.userAgent;
     const mobile = Boolean(userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i));
     setIsMobile(mobile);
   }, []);
-
   return { isMobile };
 };
 
-
 // --- Komponen Utama Aplikasi ---
-export default function App() {
+export default function HomePage() {
   const { isMobile } = useDeviceDetection();
-
   return (
-    <div className="bg-white font-inter text-gray-800">
+    <div className="bg-white font-inter text-gray-800 overflow-x-hidden">
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -34,87 +33,49 @@ export default function App() {
         transition={{ duration: 0.5 }}
       >
         <HeroSection isMobile={isMobile} />
-        <FeaturedProductsSection isMobile={isMobile} />
-        <HowToOrderSection />
-        {/* Komponen Sticker Dekoratif */}
+        <AboutSection />
+        <FeaturedProductsSection />
+        <InfoSection />
+        <ContactSection />
         <DecorativeStickers isMobile={isMobile} />
       </motion.main>
     </div>
   );
 }
 
-// --- Komponen Loader Transisi Halaman (Inovasi Utama 2) ---
-const PageLoader = () => (
-  <motion.div
-    key="loader"
-    className="fixed inset-0 bg-yellow-300 z-[100] flex items-center justify-center"
-    initial={{ scaleY: 0, originY: 'top' }}
-    animate={{ scaleY: 1, originY: 'top' }}
-    exit={{ scaleY: 0, originY: 'bottom' }}
-    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-  >
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3, duration: 0.5 }}
-      className="flex flex-col items-center gap-4"
-    >
-      <Sparkles className="text-yellow-800 w-16 h-16 animate-pulse" />
-      <p className="font-quicksand font-bold text-2xl text-yellow-900">Hopeeybeads</p>
-    </motion.div>
-  </motion.div>
-);
-
-// --- Bagian Hero (Halaman 1.1) ---
+// --- 1. Bagian Hero ---
 const HeroSection = ({ isMobile }: { isMobile: boolean }) => {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Efek Parallax yang berbeda untuk Desktop dan Mobile
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "20%" : "50%"]);
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section id="home" ref={heroRef} className="relative h-screen min-h-[600px] bg-yellow-50 overflow-hidden flex items-center justify-center">
-      {/* Background Image dengan Parallax */}
+    <section id="home" ref={heroRef} className="relative h-screen min-h-[700px] bg-yellow-50 overflow-hidden flex items-center justify-center">
       <motion.div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center opacity-40"
         style={{
-          backgroundImage: "url('https://placehold.co/1920x1080/fef3c7/fef3c7?text=.')", // Placeholder background
+          backgroundImage: "url('https://images.unsplash.com/photo-1599835182936-6582572a9a4e?q=80&w=2070&auto=format&fit=crop')",
           y: yBg,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent"></div>
-
-      {/* Konten Teks */}
-      <motion.div
-        style={{ opacity: opacityText }}
-        className="relative z-10 text-center px-4"
-      >
+      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
+      <motion.div style={{ opacity: opacityText }} className="relative z-10 text-center px-4">
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-poppins font-extrabold text-5xl md:text-7xl text-yellow-900 drop-shadow-lg"
+          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-quicksand font-bold text-5xl md:text-7xl text-yellow-900 drop-shadow-lg"
         >
-          Your Daily Dose of <span className="text-yellow-600">Sparkle</span>
+          Dream. Create. Wear.<br />Butir demi Butir
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="mt-4 max-w-xl mx-auto text-lg text-gray-700"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="mt-6 max-w-2xl mx-auto text-lg text-gray-700 leading-relaxed"
         >
-          Temukan manik-manik buatan tangan yang menceritakan gayamu. Unik, penuh warna, dan dibuat khusus untukmu.
+          Not just a name, but a promise to turn your wishes into wearable art. Let’s make something beautiful together!
         </motion.p>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="mt-8"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="mt-10"
         >
           <a href="#products">
             <motion.button
@@ -122,7 +83,7 @@ const HeroSection = ({ isMobile }: { isMobile: boolean }) => {
               whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -5px rgb(234 179 8 / 0.5), 0 10px 10px -5px rgb(234 179 8 / 0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Lihat Koleksi <ArrowRight size={20} />
+              Explore Our Creations <ArrowRight size={20} />
             </motion.button>
           </a>
         </motion.div>
@@ -131,123 +92,50 @@ const HeroSection = ({ isMobile }: { isMobile: boolean }) => {
   );
 };
 
+// --- 2. Bagian Tentang Kami ---
+const AboutSection = () => {
+  const aboutRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"]
+  });
+  const yImage = useTransform(scrollYProgress, [0, 1], ["-5%", "25%"]);
 
-// --- Bagian Produk Unggulan (Halaman 1.2) ---
-const FeaturedProductsSection = ({ isMobile }: { isMobile: boolean }) => {
-  const allProducts = getProducts();
-  // Ambil 8 produk acak dari semua kategori
-  const shuffled = [...allProducts].sort(() => Math.random() - 0.5);
-  const featured = shuffled.slice(0, 6);
   return (
-    <section id="products" className="py-24 bg-white relative z-10">
+    <section id="about" ref={aboutRef} className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          className="font-poppins text-4xl font-bold text-center text-yellow-900 mb-12"
-        >
-          Produk Unggulan Kami
-        </motion.h2>
-        <ProductGallery products={featured} />
-      </div>
-    </section>
-  );
-};
-
-// --- Komponen Kartu Produk dengan Interaksi Spesifik Perangkat ---
-const ProductCard = ({ product, isMobile }: { product: Product; isMobile: boolean }) => {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { stiffness: 100 } },
-  };
-
-  const tapEffect = isMobile ? { scale: 0.95, transition: { stiffness: 400, damping: 17 } } : {};
-  const hoverEffect = !isMobile ? { y: -10, scale: 1.05, boxShadow: "0 20px 30px -10px rgba(0,0,0,0.15)" } : {};
-
-  return (
-    <motion.div
-      variants={cardVariants}
-      className="group relative bg-yellow-50 rounded-2xl overflow-hidden shadow-md transition-shadow duration-300"
-      whileHover={hoverEffect}
-      whileTap={tapEffect}
-    >
-      <div className="aspect-square overflow-hidden">
-        <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-      </div>
-      <div className="p-4 text-center">
-        <h3 className="font-quicksand font-bold text-lg text-yellow-900 truncate">{product.name}</h3>
-        <p className="text-sm text-gray-500 mb-2">{product.category}</p>
-        <p className="font-poppins font-semibold text-yellow-700">Rp {product.price.toLocaleString('id-ID')}</p>
-      </div>
-      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <span className="text-white font-bold py-2 px-4 border-2 border-white rounded-full">Lihat Detail</span>
-      </div>
-    </motion.div>
-  );
-};
-
-// --- Bagian Cara Pemesanan & Kontak (Halaman 1.3) ---
-const HowToOrderSection = () => {
-  const iconVariants = {
-    hidden: { scale: 0, rotate: -45 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        delay: 0.3
-      }
-    }
-  };
-
-  return (
-    <section id="order" className="py-24 bg-yellow-50">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="font-poppins text-4xl font-bold text-yellow-900 mb-4">
-          Punya Pertanyaan?
-        </h2>
-        <p className="max-w-2xl mx-auto text-gray-600 mb-12">
-          Kami siap membantu! Hubungi kami melalui salah satu cara di bawah ini untuk pemesanan, custom order, atau sekadar menyapa.
-        </p>
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+            <motion.div style={{ y: yImage }} className="absolute inset-0 z-10">
+              <Image
+                src="/photo-collage.png"
+                alt="Proses pembuatan manik-manik Hopeeybeads"
+                layout="fill"
+                objectFit="cover"
+                className="brightness-90"
+              />
+            </motion.div>
+          </div>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col items-center gap-3 group cursor-pointer"
+            transition={{ duration: 0.8 }}
+            className="text-left"
           >
-            <div className="bg-white rounded-full p-5 shadow-lg group-hover:bg-yellow-400 transition-colors duration-300">
-              <MessageCircle size={32} className="text-yellow-600 group-hover:text-white transition-colors duration-300" />
+            <div className="flex items-center gap-3 mb-4">
+              <Sparkles className="text-yellow-500" />
+              <h3 className="font-poppins font-semibold text-yellow-600">Cerita Kami</h3>
             </div>
-            <span className="font-semibold text-yellow-800">WhatsApp</span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center gap-3 group cursor-pointer"
-          >
-            <div className="bg-white rounded-full p-5 shadow-lg group-hover:bg-yellow-400 transition-colors duration-300">
-              <ShoppingBag size={32} className="text-yellow-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-            <span className="font-semibold text-yellow-800">Shopee</span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col items-center gap-3 group cursor-pointer"
-          >
-            <div className="bg-white rounded-full p-5 shadow-lg group-hover:bg-yellow-400 transition-colors duration-300">
-              <MapPin size={32} className="text-yellow-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-            <span className="font-semibold text-yellow-800">Lokasi</span>
+            <h2 className="font-quicksand text-4xl font-bold text-yellow-900 mb-6">
+              Untaian Harapan Dalam Setiap Manik
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              Hopeeybeads.id adalah untaian harapan yang terjalin dalam setiap butir manik-manik. Ini bukan sekadar nama toko, melainkan sebuah janji untuk menciptakan keindahan dari setiap keinginan, dan mengubahnya menjadi karya yang bisa dikenakan.
+            </p>
+            <p className="text-gray-600 leading-relaxed mt-4">
+              Di balik nama ini, tersembunyi makna bahwa setiap manik-manik yang dirangkai membawa cerita, impian, dan secercah cahaya harapan.
+            </p>
           </motion.div>
         </div>
       </div>
@@ -255,21 +143,186 @@ const HowToOrderSection = () => {
   );
 };
 
-// --- Komponen Sticker Dekoratif (Inovasi Utama 1) ---
-const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
-  const stickerContainerRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [deviceOrientation, setDeviceOrientation] = useState({ gamma: 0, beta: 0 });
+// --- 3. Bagian Produk Unggulan ---
+const FeaturedProductsSection = () => {
+  const featuredRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: featuredRef, offset: ["start end", "end start"] });
+  const yBg = useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]);
+  const featured = getProducts().slice(0, 4);
 
-  // Efek Kursor untuk Desktop
+  return (
+    <section id="products" ref={featuredRef} className="py-24 bg-yellow-50/50 relative z-10 overflow-hidden">
+      <motion.div
+        className="absolute top-0 left-0 w-96 h-96 bg-yellow-200 rounded-full opacity-30 blur-3xl -translate-x-1/2"
+        style={{ y: yBg }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200 rounded-full opacity-30 blur-3xl translate-x-1/2"
+        style={{ y: yBg }}
+      />
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }}
+          className="font-poppins text-4xl font-bold text-center text-yellow-900 mb-4"
+        >
+          Collection With Stories
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} viewport={{ once: true, amount: 0.5 }}
+          className="text-center text-gray-600 max-w-xl mx-auto mb-12"
+        >
+          Setiap kreasi adalah harapan yang hidup. Find the one that speaks to you!
+        </motion.p>
+        <ProductGallery products={featured} />
+      </div>
+    </section>
+  );
+};
+
+// --- 4. Bagian Informasi ---
+const InfoSection = () => {
+  const infoCard = (icon: React.ReactNode, title: string, description: string, delay: number) => (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6, delay }}
+      className="bg-yellow-50 rounded-2xl p-8 text-center flex flex-col items-center shadow-sm"
+    >
+      <div className="bg-white rounded-full p-4 mb-5 shadow-md">
+        {icon}
+      </div>
+      <h3 className="font-poppins font-bold text-xl text-yellow-900 mb-2">{title}</h3>
+      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+    </motion.div>
+  );
+
+  return (
+    <section id="info" className="py-24 bg-white">
+      <div className="container mx-auto px-6">
+        <h2 className="font-poppins text-4xl font-bold text-center text-yellow-900 mb-4">
+          Info For You
+        </h2>
+        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          Kami selalu ingin prosesnya simple dan nyaman. Here’s how we roll:
+        </p>
+        <div className="grid md:grid-cols-3 gap-8">
+          {infoCard(<Ruler size={32} className="text-yellow-600" />, "Custom Size? Sure!", "Standar, tapi bisa custom. WhatsApp us for your perfect fit.", 0.1)}
+          {infoCard(<MessageCircle size={32} className="text-yellow-600" />, "Easy Payment", "Langsung via WhatsApp, super simple. We guide you every step.", 0.2)}
+          {infoCard(<Truck size={32} className="text-yellow-600" />, "Flexible Shipping", "COD Tabanan Bali, luar Bali? We ship with care. Chat for details!", 0.3)}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- 5. Bagian Kontak ---
+const ContactSection = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const yBg1 = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const yBg2 = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+
+  const listContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+
+  const listItemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+
+  return (
+    <section id="contact" ref={sectionRef} className="py-24 bg-yellow-50 overflow-hidden relative">
+      <motion.div className="absolute top-0 left-0 w-72 h-72 bg-pink-200 rounded-full opacity-40 blur-3xl -translate-x-1/2" style={{ y: yBg1 }} />
+      <motion.div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-200 rounded-full opacity-40 blur-3xl translate-x-1/2" style={{ y: yBg2 }} />
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+            <h2 className="font-quicksand text-5xl font-bold text-yellow-900 mb-4">Let's Get in Touch!</h2>
+            <p className="max-w-md text-gray-600 mb-8 leading-relaxed">
+              Punya ide custom, pertanyaan, atau mau langsung pesan? Kami senang sekali bisa membantumu. Pilih cara ternyamanmu di bawah ini!
+            </p>
+            <motion.div className="flex flex-col gap-4" variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+              <motion.a
+                href="https://wa.me/6285974465527"
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={listItemVariants}
+                className="group flex items-center gap-4 w-full p-4 rounded-2xl shadow-sm bg-white transition-all duration-300 hover:bg-green-500"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="p-3 rounded-full bg-white/50 group-hover:bg-white/30 transition-all duration-300 transform group-hover:scale-110">
+                  <MessageCircle size={24} className="text-green-600 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <span className="font-bold text-gray-800 group-hover:text-white transition-transform duration-300 transform group-hover:translate-x-1">
+                  Chat di WhatsApp
+                </span>
+              </motion.a>
+              <motion.a
+                href="http://shopee.co.id/hopeeybeads.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={listItemVariants}
+                className="group flex items-center gap-4 w-full p-4 rounded-2xl shadow-sm bg-white transition-all duration-300 hover:bg-orange-500"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="p-3 rounded-full bg-white/50 group-hover:bg-white/30 transition-all duration-300 transform group-hover:scale-110">
+                  <ShoppingBag size={24} className="text-orange-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <span className="font-bold text-gray-800 group-hover:text-white transition-transform duration-300 transform group-hover:translate-x-1">
+                  Belanja di Shopee
+                </span>
+              </motion.a>
+              <motion.a
+                href="https://www.instagram.com/hopeeybeads.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={listItemVariants}
+                className="group flex items-center gap-4 w-full p-4 rounded-2xl shadow-sm bg-white transition-all duration-300 hover:bg-pink-500"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="p-3 rounded-full bg-white/50 group-hover:bg-white/30 transition-all duration-300 transform group-hover:scale-110">
+                  <Instagram size={24} className="text-pink-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <span className="font-bold text-gray-800 group-hover:text-white transition-transform duration-300 transform group-hover:translate-x-1">
+                  Follow di Instagram
+                </span>
+              </motion.a>
+            </motion.div>
+          </motion.div>
+          <motion.div className="flex flex-col items-center justify-center p-6 bg-white/50 rounded-3xl shadow-lg backdrop-blur-sm" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+            <div className="w-full h-[300px] rounded-2xl overflow-hidden shadow-inner">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d986.296938637404!2d115.124185!3d-8.5474812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23a4486bdf6d5%3A0x9cb212de9748c7e4!2sPenjahit%20Rahayu!5e0!3m2!1sid!2sid!4v1756354944318!5m2!1sid!2sid" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <a href="https://maps.app.goo.gl/138Yp25s28p49Kcb7" target="_blank" rel="noopener noreferrer">
+              <motion.button className="mt-6 bg-yellow-400 text-yellow-900 font-bold py-3 px-8 rounded-full shadow-md hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <MapPin size={20} /> Buka di Google Maps
+              </motion.button>
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- 6. Komponen Sticker Dekoratif ---
+const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     if (isMobile) return;
-
     const handleMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
       const { innerWidth, innerHeight } = window;
       setMousePosition({
-        x: (clientX / innerWidth - 0.5) * 2, // Normalisasi -1 to 1
+        x: (clientX / innerWidth - 0.5) * 2,
         y: (clientY / innerHeight - 0.5) * 2,
       });
     };
@@ -277,50 +330,13 @@ const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isMobile]);
 
-  // Efek Gyroscope untuk Mobile
-  useEffect(() => {
-    if (!isMobile || !window.DeviceOrientationEvent) return;
+  const sticker1Transform = `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)`;
+  const sticker2Transform = `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`;
 
-    const handleOrientation = (event: DeviceOrientationEvent) => {
-      const { beta, gamma } = event; // beta: -180 to 180, gamma: -90 to 90
-      if (beta !== null && gamma !== null) {
-        setDeviceOrientation({ beta, gamma });
-      }
-    };
-
-    // Meminta izin untuk iOS 13+
-    const requestPermission = () => {
-      if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
-        (DeviceOrientationEvent as any).requestPermission()
-          .then((permissionState: string) => {
-            if (permissionState === 'granted') {
-              window.addEventListener('deviceorientation', handleOrientation);
-            }
-          })
-          .catch(console.error);
-      } else {
-        // Handle non-iOS 13+ devices
-        window.addEventListener('deviceorientation', handleOrientation);
-      }
-    };
-
-    // Tambahkan event listener dengan tombol untuk meminta izin jika diperlukan
-    // Untuk demo ini, kita asumsikan izin sudah diberikan atau tidak diperlukan
-    window.addEventListener('deviceorientation', handleOrientation);
-
-    return () => window.removeEventListener('deviceorientation', handleOrientation);
-  }, [isMobile]);
-
-  const sticker1Transform = isMobile
-    ? `translate(${deviceOrientation.gamma / 4}px, ${deviceOrientation.beta / 4}px)`
-    : `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)`;
-
-  const sticker2Transform = isMobile
-    ? `translate(${deviceOrientation.gamma / -6}px, ${deviceOrientation.beta / -6}px)`
-    : `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`;
+  if (isMobile) return null; // Nonaktifkan di mobile agar tidak mengganggu
 
   return (
-    <div ref={stickerContainerRef} className="fixed inset-0 z-0 pointer-events-none">
+    <div className="fixed inset-0 z-0 pointer-events-none">
       <motion.div
         className="absolute top-[15%] left-[10%]"
         animate={{ transform: sticker1Transform }}
@@ -338,4 +354,3 @@ const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
     </div>
   );
 };
-
