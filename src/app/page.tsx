@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useRef, useState, useEffect, cloneElement } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShoppingBag, MessageCircle, MapPin, ArrowRight, Sun, Star, Sparkles, Ruler, Truck, Instagram } from 'lucide-react';
+import { Info } from 'lucide-react';
 import Image from 'next/image';
 
 // Asumsi impor dari file lokal Anda
 import ProductGallery from './components/product-gallery';
 import { getProducts } from './libs/data';
-import { Product } from '@/app/types/product';
 
 // --- Hook untuk Deteksi Perangkat ---
 const useDeviceDetection = () => {
@@ -60,6 +60,7 @@ const HeroSection = ({ isMobile }: { isMobile: boolean }) => {
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
+
       <motion.div style={{ opacity: opacityText }} className="relative z-10 text-center px-4">
         <motion.h1
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
@@ -161,6 +162,10 @@ const FeaturedProductsSection = () => {
         style={{ y: yBg }}
       />
       <div className="container mx-auto px-6 relative z-10">
+        <div className="flex items-center gap-3 mb-4 justify-center">
+          <ShoppingBag className="text-yellow-500" />
+          <span className="font-poppins font-semibold text-yellow-600">Produk Unggulan</span>
+        </div>
         <motion.h2
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }}
           className="font-poppins text-4xl font-bold text-center text-yellow-900 mb-4"
@@ -200,9 +205,11 @@ const InfoSection = () => {
   return (
     <section id="info" className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        <h2 className="font-poppins text-4xl font-bold text-center text-yellow-900 mb-4">
-          Info For You
-        </h2>
+        <div className="flex items-center gap-3 mb-4 justify-center">
+          <Info className="text-yellow-500" />
+          <span className="font-poppins font-semibold text-yellow-600">Informasi</span>
+        </div>
+        <h2 className="font-quicksand text-4xl md:text-5xl font-bold text-yellow-900 text-center">Info For You</h2>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
           Kami selalu ingin prosesnya simple dan nyaman. Here’s how we roll:
         </p>
@@ -241,6 +248,10 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <MessageCircle className="text-yellow-500" />
+              <span className="font-poppins font-semibold text-yellow-600">Kontak</span>
+            </div>
             <h2 className="font-quicksand text-5xl font-bold text-yellow-900 mb-4">Let's Get in Touch!</h2>
             <p className="max-w-md text-gray-600 mb-8 leading-relaxed">
               Punya ide custom, pertanyaan, atau mau langsung pesan? Kami senang sekali bisa membantumu. Pilih cara ternyamanmu di bawah ini!
@@ -314,43 +325,75 @@ const ContactSection = () => {
 
 // --- 6. Komponen Sticker Dekoratif ---
 const DecorativeStickers = ({ isMobile }: { isMobile: boolean }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Random sticker count between 3 and 8
+  const [stickers, setStickers] = useState(() => {
+    const count = Math.floor(Math.random() * 6) + 3;
+    const icons = [Sun, Star, Sparkles];
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      icon: icons[Math.floor(Math.random() * icons.length)],
+      x: Math.random() * 80 + 10,
+      y: Math.random() * 80 + 10,
+      dx: (Math.random() - 0.5) * 2,
+      dy: (Math.random() - 0.5) * 2,
+      size: Math.random() > 0.5 ? 48 : 64,
+      color: ["text-yellow-300", "text-pink-300", "text-blue-300"][Math.floor(Math.random() * 3)]
+    }));
+  });
 
   useEffect(() => {
     if (isMobile) return;
-    const handleMouseMove = (event: MouseEvent) => {
-      const { clientX, clientY } = event;
-      const { innerWidth, innerHeight } = window;
-      setMousePosition({
-        x: (clientX / innerWidth - 0.5) * 2,
-        y: (clientY / innerHeight - 0.5) * 2,
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const interval = setInterval(() => {
+      setStickers(prev => prev.map(sticker => {
+        // Move randomly, ignore mouse
+        let newX = sticker.x + sticker.dx * (Math.random() * 2 + 1);
+        let newY = sticker.y + sticker.dy * (Math.random() * 2 + 1);
+        // Bounce off edges
+        let dx = sticker.dx, dy = sticker.dy;
+        if (newX < 5 || newX > 95) dx = -dx * (Math.random() * 0.8 + 0.6);
+        if (newY < 5 || newY > 95) dy = -dy * (Math.random() * 0.8 + 0.6);
+        // Occasionally randomize direction for more chaos
+        if (Math.random() < 0.1) {
+          dx = (Math.random() - 0.5) * 2;
+          dy = (Math.random() - 0.5) * 2;
+        }
+        return {
+          ...sticker,
+          x: Math.max(5, Math.min(95, newX)),
+          y: Math.max(5, Math.min(95, newY)),
+          dx,
+          dy
+        };
+      }));
+    }, 900 + Math.random() * 600);
+    return () => clearInterval(interval);
   }, [isMobile]);
 
-  const sticker1Transform = `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)`;
-  const sticker2Transform = `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`;
-
-  if (isMobile) return null; // Nonaktifkan di mobile agar tidak mengganggu
+  if (isMobile) return null;
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
-      <motion.div
-        className="absolute top-[15%] left-[10%]"
-        animate={{ transform: sticker1Transform }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      >
-        <Sun className="w-16 h-16 text-yellow-300 opacity-50" />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-[20%] right-[12%]"
-        animate={{ transform: sticker2Transform }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      >
-        <Star className="w-12 h-12 text-yellow-300 opacity-50 fill-current" />
-      </motion.div>
+      {stickers.map(sticker => {
+        const Icon = sticker.icon;
+        return (
+          <motion.div
+            key={sticker.id}
+            className="absolute"
+            style={{
+              top: `${sticker.y}%`,
+              left: `${sticker.x}%`,
+              zIndex: 0,
+            }}
+            animate={{
+              top: `${sticker.y}%`,
+              left: `${sticker.x}%`,
+            }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+          >
+            <Icon className={`w-${sticker.size / 4} h-${sticker.size / 4} opacity-50 ${sticker.color}`} />
+          </motion.div>
+        );
+      })}
     </div>
   );
 };

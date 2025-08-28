@@ -135,7 +135,7 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={closeMenu}
-                                        className="block py-4 text-2xl font-semibold border-b border-gray-100 transition-colors text-gray-800 hover:text-yellow-700"
+                                        className="block py-4 text-2xl font-semibold border-b border-gray-100 transition-colors text-gray-800 hover:text-yellow-600"
                                     >
                                         {link.name}
                                     </Link>

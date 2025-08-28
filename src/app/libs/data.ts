@@ -13,7 +13,7 @@ export const products: Product[] = [
         rating: 5,
         image: '/strap/strap1.png',
         images: ['/strap/strap1.png'],
-        description: 'Tali handphone dengan beads warna-warni, cocok untuk semua tipe ponsel. Handmade, kuat, dan stylish untuk aktivitas harian.'
+        description: 'Tali handphone handmade dengan beads warna-warni yang ceria dan unik.\nCocok untuk semua tipe ponsel, memberikan sentuhan personal dan aman.\nDesain stylish, kuat, dan nyaman dipakai setiap hari.'
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ export const products: Product[] = [
         rating: 5,
         image: '/strap/strap2.png',
         images: ['/strap/strap2.png'],
-        description: 'Tali handphone dengan kombinasi beads unik, memberikan sentuhan personal dan aman untuk ponsel Anda.'
+        description: 'Strap handphone dengan kombinasi beads unik dan motif modern.\nMemberikan perlindungan ekstra sekaligus mempercantik ponsel Anda.\nPilihan tepat untuk gaya aktif dan ekspresif.'
     },
     // GELANG
     {
@@ -41,7 +41,7 @@ export const products: Product[] = [
             '/gelang/kerang/20241014_151335.jpg',
             '/gelang/kerang/20241014_151500.jpg'
         ],
-        description: 'Gelang handmade dengan hiasan kerang laut asli, cocok untuk gaya pantai dan kasual, memberikan nuansa tropis.'
+        description: 'Gelang handmade dengan hiasan kerang laut asli, nuansa tropis yang eksotis.\nCocok untuk gaya pantai, liburan, atau aktivitas kasual sehari-hari.\nMaterial berkualitas, nyaman dipakai dan tahan lama.'
     },
     {
         id: 4,
@@ -57,7 +57,7 @@ export const products: Product[] = [
             '/gelang/kupu/20250524_154544.jpg',
             '/gelang/kupu/20250524_154738.jpg'
         ],
-        description: 'Gelang dengan motif kupu-kupu, terbuat dari beads berkualitas, cocok untuk anak-anak dan remaja yang suka warna ceria.'
+        description: 'Gelang beads dengan motif kupu-kupu yang lucu dan penuh warna.\nPilihan sempurna untuk anak-anak dan remaja yang suka tampil ceria.\nDesain playful, ringan, dan mudah dipadukan dengan outfit apapun.'
     },
     {
         id: 5,
@@ -75,7 +75,7 @@ export const products: Product[] = [
             '/gelang/mutiara/20250524_155001.jpg',
             '/gelang/mutiara/20250524_155023.jpg'
         ],
-        description: 'Gelang elegan dengan beads mutiara sintetis, cocok untuk acara formal maupun santai, menambah kesan mewah.'
+        description: 'Gelang elegan dengan beads mutiara sintetis, tampilan mewah dan anggun.\nCocok untuk acara formal, pesta, maupun santai bersama teman.\nSentuhan klasik yang membuat penampilan semakin berkelas.'
     },
     {
         id: 6,
@@ -90,7 +90,7 @@ export const products: Product[] = [
             '/gelang/pita/20241014_150846.jpg',
             '/gelang/pita/20241014_150847.jpg'
         ],
-        description: 'Gelang dengan aksen pita lucu, cocok untuk hadiah atau dipakai sehari-hari, desain feminin dan playful.'
+        description: 'Gelang beads dengan aksen pita lucu, desain feminin dan playful.\nPilihan hadiah spesial untuk sahabat atau keluarga tercinta.\nRingan, nyaman dipakai, dan cocok untuk segala suasana.'
     },
     // JEPIT (all variants)
     {
@@ -122,7 +122,7 @@ export const products: Product[] = [
             '/jepit/bunga-2/20250821_093217.jpg',
             '/jepit/bunga-2/20250821_093221.jpg'
         ],
-        description: 'Jepit rambut dengan motif bunga handmade, cocok untuk mempercantik gaya rambut anak dan remaja.'
+        description: 'Jepit rambut handmade dengan motif bunga yang cantik dan segar.\nMudah digunakan untuk memperindah berbagai gaya rambut.\nPilihan favorit anak-anak dan remaja yang suka tampil stylish.'
     },
     {
         id: 9,
@@ -189,7 +189,7 @@ export const products: Product[] = [
             '/jepit/hijau-kupu/20250821_093436.jpg',
             '/jepit/hijau-kupu/20250821_093437.jpg'
         ],
-        description: 'Jepit rambut dengan motif kupu-kupu hijau, memberikan kesan segar dan natural pada penampilan.'
+        description: 'Jepit rambut kupu-kupu hijau, tampilan segar dan natural untuk rambut Anda.\nCocok dipakai saat hangout, sekolah, atau acara santai.\nDesain unik, mudah dipadukan dengan berbagai gaya rambut.'
     },
     {
         id: 13,
@@ -203,7 +203,7 @@ export const products: Product[] = [
             '/jepit/orange-kupu/20250821_093528.jpg',
             '/jepit/orange-kupu/20250821_093533.jpg'
         ],
-        description: 'Jepit rambut kupu-kupu warna orange, cocok untuk tampilan ceria dan energik.'
+        description: 'Jepit rambut kupu-kupu orange, warna ceria dan energik untuk penampilan Anda.\nMudah digunakan, cocok untuk anak-anak dan remaja aktif.\nMaterial berkualitas, tahan lama dan nyaman dipakai.'
     },
     {
         id: 14,
@@ -217,7 +217,7 @@ export const products: Product[] = [
             '/jepit/pink-kupu/20250821_093452.jpg',
             '/jepit/pink-kupu/20250821_093513.jpg'
         ],
-        description: 'Jepit rambut kupu-kupu pink, feminin dan manis, cocok untuk berbagai gaya rambut.'
+        description: 'Jepit rambut kupu-kupu pink, desain feminin dan manis untuk gaya rambut Anda.\nPilihan tepat untuk acara spesial atau sehari-hari.\nRingan, mudah dipakai, dan cocok untuk segala usia.'
     },
     {
         id: 15,
@@ -231,7 +231,7 @@ export const products: Product[] = [
             '/jepit/putih-kupu/20250821_093602.jpg',
             '/jepit/putih-kupu/20250821_093611.jpg'
         ],
-        description: 'Jepit rambut kupu-kupu putih, elegan dan netral, mudah dipadukan dengan outfit apapun.'
+        description: 'Jepit rambut kupu-kupu putih, tampilan elegan dan netral untuk segala outfit.\nCocok untuk acara formal maupun santai bersama teman.\nDesain simpel, mudah dipadukan dan nyaman digunakan.'
     },
 ];
 

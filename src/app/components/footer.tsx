@@ -63,10 +63,10 @@ export default function Footer() {
                     >
                         <h3 className="font-bold text-lg text-gray-900 mb-4">Explore</h3>
                         <ul className="space-y-3">
-                            <li><a href="/" className="hover:text-yellow-700 transition-colors">Home</a></li>
-                            <li><a href="/products" className="hover:text-yellow-700 transition-colors">All Products</a></li>
-                            <li><a href="/about" className="hover:text-yellow-700 transition-colors">About Us</a></li>
-                            <li><a href="/#contact" className="hover:text-yellow-700 transition-colors">Contact</a></li>
+                            <li><a href="/" className="hover:text-yellow-600 transition-colors">Home</a></li>
+                            <li><a href="/products" className="hover:text-yellow-600 transition-colors">All Products</a></li>
+                            <li><a href="/about" className="hover:text-yellow-600 transition-colors">About Us</a></li>
+                            <li><a href="/#contact" className="hover:text-yellow-600 transition-colors">Contact</a></li>
                         </ul>
                     </motion.div>
                     {/* Kolom 3: Bantuan */}
@@ -78,9 +78,9 @@ export default function Footer() {
                     >
                         <h3 className="font-bold text-lg text-gray-900 mb-4">Need Help?</h3>
                         <ul className="space-y-3">
-                            <li><a href="/how-to-order" className="hover:text-yellow-700 transition-colors">How to Order</a></li>
-                            <li><a href="/shipping-returns" className="hover:text-yellow-700 transition-colors">Shipping & Returns</a></li>
-                            <li><a href="/faq" className="hover:text-yellow-700 transition-colors">FAQ</a></li>
+                            <li><a href="/how-to-order" className="hover:text-yellow-600 transition-colors">How to Order</a></li>
+                            <li><a href="/shipping-returns" className="hover:text-yellow-600 transition-colors">Shipping & Returns</a></li>
+                            <li><a href="/faq" className="hover:text-yellow-600 transition-colors">FAQ</a></li>
                         </ul>
                     </motion.div>
                     {/* Kolom 4: Temukan Kami */}
@@ -96,7 +96,7 @@ export default function Footer() {
                             <a href="https://www.instagram.com/hopeeybeads.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-pink-600 transition-colors">
                                 <FaInstagram size={24} />
                             </a>
-                            <a href="https://shopee.co.id/hopeeybeads.id" target="_blank" rel="noopener noreferrer" aria-label="Shopee" className="text-gray-500 hover:text-orange-400 transition-colors">
+                            <a href="https://shopee.co.id/hopeeybeads.id" target="_blank" rel="noopener noreferrer" aria-label="Shopee" className="text-gray-500 hover:text-yellow-400 transition-colors">
                                 <FaShoppingBag size={24} />
                             </a>
                             <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-gray-500 hover:text-green-600 transition-colors">
