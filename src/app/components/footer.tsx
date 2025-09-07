@@ -65,7 +65,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             <li><a href="/" className="hover:text-yellow-600 transition-colors">Beranda</a></li>
                             <li><a href="/products" className="hover:text-yellow-600 transition-colors">Semua Produk</a></li>
-                            <li><a href="/about" className="hover:text-yellow-600 transition-colors">Tentang Kami</a></li>
+                            <li><a href="/#about" className="hover:text-yellow-600 transition-colors">Tentang Kami</a></li>
                             <li><a href="/#contact" className="hover:text-yellow-600 transition-colors">Kontak</a></li>
                         </ul>
                     </motion.div>

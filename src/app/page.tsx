@@ -132,10 +132,10 @@ const AboutSection = () => {
               Untaian Harapan Dalam Setiap Manik
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              Hopeeybeads.id lahir dari impian sederhana: setiap manik-manik yang kami rangkai punya cerita dan harapan tersendiri. Bukan cuma sekadar toko, kami ingin setiap karya yang kamu pakai terasa spesial dan penuh makna.
+              Hopeeybeads.id itu lahir dari iseng, tumbuh jadi hobi, lalu berubah jadi sesuatu yang kami cintai. Setiap manik-manik yang kami rangkai, kami buat dengan hati—bukan sekadar jualan, tapi ingin setiap karya yang kamu pakai benar-benar punya cerita dan rasa.
             </p>
             <p className="text-gray-600 leading-relaxed mt-4">
-              Di setiap nama dan desain, ada kisah, impian, dan secercah harapan yang kami titipkan. Semoga setiap butir manik-manik bisa jadi teman perjalananmu, membawa warna dan semangat baru setiap hari.
+              Di balik setiap nama dan desain, ada tawa, harapan, dan semangat yang kami titipkan. Semoga setiap butir manik-manik dari kami bisa nemenin harimu, kasih warna baru, dan jadi pengingat kecil bahwa harapan itu selalu ada, sekecil apapun.
             </p>
           </motion.div>
         </div>
@@ -192,7 +192,7 @@ const faqs = [
   },
   {
     q: "Apakah bisa custom ukuran atau desain?",
-    a: "Tentu saja! Sebagian besar produk bisa di-custom sesuai keinginanmu. Silakan konsultasi dulu lewat WhatsApp."
+    a: "Saat ini semua produk ready stock dan belum menerima custom ukuran atau desain, tapi siapa tahu ke depannya bisa! Pantau terus update dari kami, ya."
   },
   {
     q: "Pengiriman ke luar Bali bisa?",
@@ -330,7 +330,12 @@ const InfoSection = () => {
           Kami selalu ingin prosesnya simple dan nyaman. Here’s how we roll:
         </p>
         <div className="grid md:grid-cols-3 gap-8">
-          {infoCard(<Ruler size={32} className="text-yellow-600" />, "Custom Size? Sure!", "Standar, tapi bisa custom. WhatsApp us for your perfect fit.", 0.1)}
+          {infoCard(
+            <Sparkles size={32} className="text-yellow-600" />,
+            "Bahan Pilihan",
+            "Semua produk dibuat dari bahan berkualitas dan aman dipakai sehari-hari.",
+            0.1
+          )}
           {infoCard(<MessageCircle size={32} className="text-yellow-600" />, "Easy Payment", "Langsung via WhatsApp, super simple. We guide you every step.", 0.2)}
           {infoCard(<Truck size={32} className="text-yellow-600" />, "Flexible Shipping", "COD Tabanan Bali, luar Bali? We ship with care. Chat for details!", 0.3)}
         </div>
