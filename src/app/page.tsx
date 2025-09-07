@@ -66,13 +66,13 @@ const HeroSection = ({ isMobile }: { isMobile: boolean }) => {
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
           className="font-quicksand font-bold text-5xl md:text-7xl text-yellow-900 drop-shadow-lg"
         >
-          Dream. Create. Wear.<br />Butir demi Butir
+          Hope, Worn Beautifully
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mt-6 max-w-2xl mx-auto text-lg text-gray-700 leading-relaxed"
         >
-          Not just a name, but a promise to turn your wishes into wearable art. Let’s make something beautiful together!
+          Every bead is a little wish you can wear. Discover handmade accessories that bring hope and beauty to your everyday life.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -129,13 +129,16 @@ const AboutSection = () => {
               <h3 className="font-poppins font-semibold text-yellow-600">Cerita Kami</h3>
             </div>
             <h2 className="font-quicksand text-4xl font-bold text-yellow-900 mb-6">
-              Untaian Harapan Dalam Setiap Manik
+              A String of Hope in Every Bead
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              Hopeeybeads.id itu lahir dari iseng, tumbuh jadi hobi, lalu berubah jadi sesuatu yang kami cintai. Setiap manik-manik yang kami rangkai, kami buat dengan hati—bukan sekadar jualan, tapi ingin setiap karya yang kamu pakai benar-benar punya cerita dan rasa.
+              Hopeeybeads.id is born from the words <b>Hope</b> and <b>Beads</b>. We believe that every bead we use has a happy story to tell and can be a powerful symbol of hope for its wearer.
             </p>
             <p className="text-gray-600 leading-relaxed mt-4">
-              Di balik setiap nama dan desain, ada tawa, harapan, dan semangat yang kami titipkan. Semoga setiap butir manik-manik dari kami bisa nemenin harimu, kasih warna baru, dan jadi pengingat kecil bahwa harapan itu selalu ada, sekecil apapun.
+              Explore our selection of beads and supplies to create your own accessories—from bracelets and phone straps to rings and more. Each piece is meant to be a daily companion and a small, beautiful reminder that hope is always present.
+            </p>
+            <p className="text-gray-600 leading-relaxed mt-4">
+              Our products are designed for everyday life—they're perfect for school, work, or adding a personal touch to any event. They also make thoughtful gifts that anyone would love to receive.
             </p>
           </motion.div>
         </div>
@@ -332,7 +335,7 @@ const InfoSection = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {infoCard(
             <Sparkles size={32} className="text-yellow-600" />,
-            "Bahan Pilihan",
+            "Quality Materials",
             "Semua produk dibuat dari bahan berkualitas dan aman dipakai sehari-hari.",
             0.1
           )}

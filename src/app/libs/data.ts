@@ -86,8 +86,8 @@ export const products: Product[] = [
     // JEPIT (all variants)
     {
         id: 7,
-        slug: 'bunga-1',
-        name: 'Jepit Bunga Kamboja 4cm',
+        slug: 'bunga-kamboja-clear-4cm',
+        name: 'Jepit Bunga Kamboja clear 4cm',
         category: 'Jepit',
         price: 5000,
         rating: 4,
@@ -102,7 +102,7 @@ export const products: Product[] = [
     },
     {
         id: 8,
-        slug: 'bunga-2',
+        slug: 'bunga-kamboja-4cm',
         name: 'Jepit Bunga Kamboja 4cm',
         category: 'Jepit',
         price: 5000,
@@ -117,8 +117,8 @@ export const products: Product[] = [
     },
     {
         id: 9,
-        slug: 'bunga-3',
-        name: 'Jepit Bunga 3',
+        slug: 'bunga-goldline-6cm',
+        name: 'Jepit Bunga Goldline 6cm',
         category: 'Jepit',
         price: 5000,
         rating: 4,
@@ -135,8 +135,8 @@ export const products: Product[] = [
     },
     {
         id: 10,
-        slug: 'bunga-4',
-        name: 'Jepit Bunga Kamboja 8cm',
+        slug: 'bunga-3-kamboja-8cm',
+        name: 'Jepit Bunga 3 Kamboja 8cm',
         category: 'Jepit',
         price: 5000,
         rating: 4,
@@ -151,8 +151,8 @@ export const products: Product[] = [
     },
     {
         id: 11,
-        slug: 'bunga-5',
-        name: 'Jepit Bunga 5',
+        slug: 'bunga-kamboja-pastel-8cm',
+        name: 'Jepit Bunga Kamboja pastel edition 8cm',
         category: 'Jepit',
         price: 5000,
         rating: 4,
@@ -160,7 +160,7 @@ export const products: Product[] = [
         images: [
             '/jepit/bunga-5/20250821_092204.jpg',
             '/jepit/bunga-5/20250821_091929.jpg',
-            '/jepit/bunga-5/20250821_091943(0).jpg',
+            '/jepit/bunga-5/20250821_091943.jpg',
             '/jepit/bunga-5/20250821_092120.jpg',
             '/jepit/bunga-5/20250821_092145.jpg',
             '/jepit/bunga-5/20250821_091915.jpg'

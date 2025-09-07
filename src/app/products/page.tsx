@@ -21,9 +21,9 @@ export default function ProductsPage() {
     return (
         <div className="container mx-auto px-4 py-20 md:py-24">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold tracking-tighter">Our Collection</h1>
+                <h1 className="text-4xl font-bold tracking-tighter">Dream Chaser Collection</h1>
                 <p className="mt-2 text-gray-600">
-                    Browse through our curated selection of handmade accessories.
+                    Browse our curated collection and find the perfect piece to brighten your day.
                 </p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">

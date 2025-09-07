@@ -63,7 +63,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     </h3>
                     <StarRating rating={product.rating} />
                     <p className="font-extrabold text-gray-900 text-lg mt-1">
-                        Rp {product.price.toLocaleString('id-ID')}
+                        Mulai dari Rp {product.price.toLocaleString('id-ID')}
                     </p>
                 </div>
             </motion.div>
