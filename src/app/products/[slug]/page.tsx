@@ -164,7 +164,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                                 <p className="text-sm text-gray-700">
                                     Ukuran bisa custom, lho! Harga akhir akan disesuaikan setelah diskusi dengan kami.
                                 </p>
-                                <a href={`https://wa.me/6285974465527?text=Hai!%20Aku%20tertarik%20dengan%20produk%20'${encodeURIComponent(product.name)}'.%20Bisa%20info%20lebih%20lanjut%20untuk%20custom%20ukuran?`} target="_blank" rel="noopener noreferrer" className="mt-6 block">
+                                <a href={`https://wa.me/6285974465527?text=Hai!%20Aku%20tertarik%20dengan%20produk%20'${encodeURIComponent(product.name)}'.%20Bisa%20info%20lebih%20lanjut%20untuk%20Harganya?`} target="_blank" rel="noopener noreferrer" className="mt-6 block">
                                     <motion.button className="w-full bg-green-500 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105" whileTap={{ scale: 0.98 }}>
                                         <MessageCircle className="w-6 h-6" />
                                         Diskusi & Pesan via WhatsApp
