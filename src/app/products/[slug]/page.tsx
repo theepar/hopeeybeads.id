@@ -2,17 +2,16 @@
 
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useParams, notFound } from 'next/navigation';
 import { getProducts, getProductBySlug } from '@/app/libs/data';
 import { Product } from '@/app/types/product';
-import { notFound } from 'next/navigation';
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, MessageCircle, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 // --- Komponen Kartu Produk (untuk Produk Terkait) ---
-// Diasumsikan Anda memiliki komponen ini dari halaman utama
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
     <Link href={`/products/${product.slug}`} className="block group">
         <motion.div
@@ -39,85 +38,66 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
     </Link>
 );
 
-
-// --- Komponen Produk Terkait ---
-const RelatedProducts = ({ currentProductCategory, currentProductId }: { currentProductCategory: string; currentProductId: number; }) => {
-    const [related, setRelated] = useState<Product[]>([]);
-
-    useEffect(() => {
-        const allProducts = getProducts();
-        const filtered = allProducts
-            .filter(p => p.category === currentProductCategory && p.id !== currentProductId)
-            .slice(0, 4); // Ambil maksimal 4 produk terkait
-        setRelated(filtered);
-    }, [currentProductCategory, currentProductId]);
-
-    if (related.length === 0) return null;
-
-    return (
-        <section className="py-16 md:py-24 bg-yellow-50/50">
-            <div className="container mx-auto px-4 sm:px-6">
-                <div className="flex items-center gap-3 mb-8 justify-center">
-                    <Sparkles className="text-yellow-500" />
-                    <h2 className="font-quicksand text-3xl font-bold text-center text-yellow-900">
-                        Kamu Mungkin Suka Juga
-                    </h2>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {related.map(product => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
-
 // --- Komponen Bintang untuk Rating ---
-const StarRating = ({ rating }: { rating: number }) => {
-    return (
-        <div className="flex items-center gap-2">
-            <div className="flex items-center">
-                {[...Array(5)].map((_, index) => (
-                    <Star key={index} className={`w-5 h-5 ${index < Math.round(rating) ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" />
-                ))}
-            </div>
-            <span className="text-sm text-gray-600 font-medium">{rating.toFixed(1)} dari 5</span>
+const StarRating = ({ rating }: { rating: number }) => (
+    <div className="flex items-center gap-2">
+        <div className="flex items-center">
+            {[...Array(5)].map((_, index) => (
+                <Star key={index} className={`w-5 h-5 ${index < Math.round(rating) ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" />
+            ))}
         </div>
-    );
-};
+        <span className="text-sm text-gray-600 font-medium">{rating.toFixed(1)} dari 5</span>
+    </div>
+);
+
 
 // --- Komponen Utama Halaman Detail Produk ---
-export default function ProductDetailPage({ params }: { params: { slug: string } }) {
+export default function ProductDetailPage() {
+    // State untuk menyimpan data produk dan produk terkait
     const [product, setProduct] = useState<Product | null>(null);
-    const [activeImage, setActiveImage] = useState<string>('');
+    const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
-    useEffect(() => {
-        const fetchedProduct = getProductBySlug(params.slug);
-        if (fetchedProduct) {
-            setProduct(fetchedProduct);
-            setActiveImage(fetchedProduct.image);
-            setActiveIndex(0);
-        } else {
-            notFound();
-        }
-    }, [params.slug]);
+    // Mengambil slug dari URL menggunakan hook useParams
+    const params = useParams();
+    const slug = typeof params.slug === 'string' ? params.slug : '';
 
+    // useEffect untuk mengambil data saat komponen dimuat di browser
+    useEffect(() => {
+        if (slug) {
+            const fetchedProduct = getProductBySlug(slug);
+            if (!fetchedProduct) {
+                notFound(); // Panggil notFound jika produk tidak ada
+            } else {
+                setProduct(fetchedProduct);
+
+                // Ambil produk terkait
+                const allProducts = getProducts();
+                const related = allProducts
+                    .filter(p => p.category === fetchedProduct.category && p.id !== fetchedProduct.id)
+                    .slice(0, 4);
+                setRelatedProducts(related);
+            }
+        }
+    }, [slug]); // Jalankan effect ini setiap kali slug berubah
+
+    // Tampilkan loading state jika data produk belum ada
     if (!product) {
-        return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+        return <div className='flex justify-center items-center h-screen'>Loading...</div>; // Atau komponen skeleton yang lebih bagus
     }
 
+    // Setelah produk ada, siapkan data gambar
     const allImages = [product.image, ...product.images.filter(img => img !== product.image)];
+    const activeImage = allImages[activeIndex];
+
     const categoryColors: { [key: string]: string } = {
         'Phone Strap': 'bg-pink-100 text-pink-800',
-        Jepit: 'bg-blue-100 text-blue-800',
-        Gelang: 'bg-green-100 text-green-800',
+        'Jepit': 'bg-blue-100 text-blue-800',
+        'Gelang': 'bg-green-100 text-green-800',
     };
 
     const handleImageChange = (newIndex: number) => {
         setActiveIndex(newIndex);
-        setActiveImage(allImages[newIndex]);
     };
 
     return (
@@ -126,7 +106,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
                     <motion.div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                         {/* === Galeri Gambar === */}
-                        <div className="flex flex-col gap-4 sticky top-24">
+                        <div className="flex flex-col gap-4 top-24">
                             <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-lg">
                                 {allImages.length > 1 && (
                                     <>
@@ -136,7 +116,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                                 )}
                                 <AnimatePresence mode="wait">
                                     <motion.div key={activeIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="absolute inset-0">
-                                        <Image src={activeImage} alt={product.name} layout="fill" objectFit="cover" priority />
+                                        <Image src={activeImage} alt={product.name} fill className="object-cover w-full h-full" priority />
                                     </motion.div>
                                 </AnimatePresence>
                             </div>
@@ -155,19 +135,13 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                             <h1 className="text-4xl lg:text-5xl font-bold font-quicksand text-gray-900 leading-tight">{product.name}</h1>
                             <StarRating rating={product.rating} />
                             <p className="text-gray-600 leading-relaxed pt-2 border-t border-gray-100">{product.description}</p>
-
                             <div className="mt-4 p-6 bg-yellow-50 rounded-2xl border-2 border-dashed border-yellow-200">
                                 <p className="text-sm font-semibold text-yellow-800">Estimasi Harga</p>
-                                <p className="text-4xl font-extrabold text-yellow-900 my-1">
-                                    Rp 5k - 12k
-                                </p>
-                                <p className="text-sm text-gray-700">
-                                    Ukuran bisa custom, lho! Harga akhir akan disesuaikan setelah diskusi dengan kami.
-                                </p>
+                                <p className="text-4xl font-extrabold text-yellow-900 my-1">Rp 5k - 12k</p>
+                                <p className="text-sm text-gray-700">Ukuran bisa custom, lho! Harga akhir akan disesuaikan setelah diskusi dengan kami.</p>
                                 <a href={`https://wa.me/6285974465527?text=Hai!%20Aku%20tertarik%20dengan%20produk%20'${encodeURIComponent(product.name)}'.%20Bisa%20info%20lebih%20lanjut%20untuk%20Harganya?`} target="_blank" rel="noopener noreferrer" className="mt-6 block">
                                     <motion.button className="w-full bg-green-500 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105" whileTap={{ scale: 0.98 }}>
-                                        <MessageCircle className="w-6 h-6" />
-                                        Diskusi & Pesan via WhatsApp
+                                        <MessageCircle className="w-6 h-6" /> Diskusi & Pesan via WhatsApp
                                     </motion.button>
                                 </a>
                             </div>
@@ -175,8 +149,23 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                     </motion.div>
                 </div>
             </div>
+
             {/* Menampilkan Produk Terkait */}
-            <RelatedProducts currentProductCategory={product.category} currentProductId={product.id} />
+            {relatedProducts.length > 0 && (
+                <section className="py-16 md:py-24 bg-yellow-50/50">
+                    <div className="container mx-auto px-4 sm:px-6">
+                        <div className="flex items-center gap-3 mb-8 justify-center">
+                            <Sparkles className="text-yellow-500" />
+                            <h2 className="font-quicksand text-3xl font-bold text-center text-yellow-900">Kamu Mungkin Suka Juga</h2>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {relatedProducts.map(p => (
+                                <ProductCard key={p.id} product={p} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </>
     );
 }
